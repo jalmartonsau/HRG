@@ -32,8 +32,8 @@ namespace HRG
         /// </summary>
         public static void DownloadLatest()
         {
-            var vm = DataContext as Models.StartVM;
-            vm.Task = "downloading";
+            //var vm = DataContext as Models.StartVM;
+            //vm.Task = "downloading";
 
             if (!ApplicationDeployment.IsNetworkDeployed)
                 return;
