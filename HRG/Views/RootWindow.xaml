@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HRG.Views.RootWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HRG.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="500">
+    <DockPanel x:Name="TitleBar" Background="#323232" MouseDown="TitleBar_MouseDown">
+        <Button x:Name="CloseButton" DockPanel.Dock="Right" Click="CloseButton_Click" >
+            <Image Source="../images/Close.png"  Margin="10,3,10,3"></Image>
+        </Button>
+        <Button x:Name="MaxButton" DockPanel.Dock="Right" Click="MaxButton_Click"  >
+            <Image Source="../images/Maximize.png" Margin="10,3,10,3"></Image>
+        </Button>
+        <Button x:Name="MinButton" DockPanel.Dock="Right" Click="MinButton_Click" >
+            <Image Source="../images/Minimize.png"  Margin="10,3,10,3"></Image>
+        </Button>
+
+        <TextBlock HorizontalAlignment="Left" Foreground="White" Padding="8" FontFamily="Open Sans Light">HRG</TextBlock>
+    </DockPanel>
+</UserControl>
