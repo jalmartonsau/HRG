@@ -25,7 +25,10 @@ namespace HRG.Views
         public RootWindow()
         {
             InitializeComponent();
-            Title.Text = "HRG" + " - " + ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+
+            Title.Text = "HRG";
+            if (ApplicationDeployment.IsNetworkDeployed)
+                Title.Text = "HRG" + " - " + ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
         }
 
 

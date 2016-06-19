@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HRG
 {
     /// <summary>
-    /// Checks for updates and download them
+    /// Update handling
     /// </summary>
     class Update : MainWindow
     {
@@ -18,6 +18,14 @@ namespace HRG
         {
             
         }
+
+        #region Properties
+
+        public int Progress { get { return 30; } set { } }
+
+        #endregion
+
+        #region DownloadLatest
 
         /// <summary>
         /// Downloads latest app
@@ -48,5 +56,7 @@ namespace HRG
             Debug.WriteLine("Update Done");
             
         }
+
+        #endregion
     }
 }

@@ -34,6 +34,6 @@
     </Window.Resources>
     <DockPanel x:Name="RootWindow">
         <Views:RootWindow MaxHeight="30" DockPanel.Dock="Top" />
-        <ContentControl />
+        <Views:Startup  />
     </DockPanel>
 </Window>
