@@ -33,7 +33,7 @@ namespace HRG
         /// <summary>
         /// Downloads latest app
         /// </summary>
-        public void DownloadLatest()
+        public static void DownloadLatest()
         {
             if (!ApplicationDeployment.IsNetworkDeployed)
                 return;
@@ -44,7 +44,7 @@ namespace HRG
 
                 if (deployment.CheckForUpdate())
                 {
-                    deployment.UpdateProgressChanged += new DeploymentProgressChangedEventHandler(deployment_UpdateProgress);
+                    //deployment.UpdateProgressChanged += new DeploymentProgressChangedEventHandler(deployment_UpdateProgress);
                     deployment.UpdateCompleted += new AsyncCompletedEventHandler(deployment_UpdateCompleted);
                     deployment.UpdateAsync();
                 }
@@ -75,6 +75,7 @@ namespace HRG
         public void deployment_UpdateProgress(object sender, DeploymentProgressChangedEventArgs e)
         {
             Progress = (e.BytesCompleted/e.BytesTotal) * 100;
+            Application.Current.MainWindow.Title = Progress.ToString();
         }
 
         #endregion
