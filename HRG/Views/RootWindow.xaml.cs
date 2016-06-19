@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -24,7 +25,7 @@ namespace HRG.Views
         public RootWindow()
         {
             InitializeComponent();
-            Title.Text = "HRG" + " - " + Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            Title.Text = "HRG" + " - " + ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
         }
 
 
