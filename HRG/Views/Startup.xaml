@@ -1,5 +1,4 @@
 ﻿<UserControl
-            
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +7,8 @@
              xmlns:HRG="clr-namespace:HRG" x:Class="HRG.Views.Startup"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="900">
+
     <DockPanel Background="#282828">
-        <ProgressBar Value="55" MaxHeight="30" Foreground="#31FE01" Background="#282828" BorderThickness="1" BorderBrush="#323232" />
+        <ProgressBar Value="40" MaxHeight="30" Foreground="#31FE01" Background="#282828" BorderThickness="1" BorderBrush="#323232"  />
     </DockPanel>
 </UserControl>

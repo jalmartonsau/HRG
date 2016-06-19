@@ -22,9 +22,14 @@ namespace HRG
         }
 
         #region Properties
+        public event PropertyChangedEventHandler PropertyChanged;
 
         private long _Progress;
-        public long Progress { get { return _Progress; } set { _Progress = value; } }
+        public long Progress { get { return _Progress; } set { _Progress = value;
+                var handler = PropertyChanged;
+                if (handler != null)
+                    handler(this, new PropertyChangedEventArgs("Progress"));
+            } }
 
         #endregion
 
