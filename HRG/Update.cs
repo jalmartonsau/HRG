@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HRG.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Deployment.Application;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 
 namespace HRG
@@ -14,24 +16,14 @@ namespace HRG
     /// <summary>
     /// Update handling
     /// </summary>
-    class Update : MainWindow
+    class Update : StartVM
     {
+        public static StartVM DataContext { get; private set; }
+
         public Update()
         {
             
         }
-
-        #region Properties
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private long _Progress;
-        public long Progress { get { return _Progress; } set { _Progress = value;
-                var handler = PropertyChanged;
-                if (handler != null)
-                    handler(this, new PropertyChangedEventArgs("Progress"));
-            } }
-
-        #endregion
 
         #region DownloadLatest
 
@@ -40,6 +32,9 @@ namespace HRG
         /// </summary>
         public static void DownloadLatest()
         {
+            var vm = DataContext as Models.StartVM;
+            vm.Task = "downloading";
+
             if (!ApplicationDeployment.IsNetworkDeployed)
                 return;
 
@@ -49,8 +44,8 @@ namespace HRG
 
                 if (deployment.CheckForUpdate())
                 {
-                    //deployment.UpdateProgressChanged += new DeploymentProgressChangedEventHandler(deployment_UpdateProgress);
                     deployment.UpdateCompleted += new AsyncCompletedEventHandler(deployment_UpdateCompleted);
+                    deployment.UpdateProgressChanged += new DeploymentProgressChangedEventHandler(deployment_UpdateProgress);
                     deployment.UpdateAsync();
                 }
             }
@@ -77,14 +72,21 @@ namespace HRG
 
         #region UpdateProgress
 
-        public void deployment_UpdateProgress(object sender, DeploymentProgressChangedEventArgs e)
+        public static void deployment_UpdateProgress(object sender, DeploymentProgressChangedEventArgs e)
         {
-            Progress = (e.BytesCompleted/e.BytesTotal) * 100;
-            Application.Current.MainWindow.Title = Progress.ToString();
+            var vm = DataContext as Models.StartVM;
+            try
+            {
+                vm.Progress = (e.BytesCompleted / e.BytesTotal) * 100;
+            }
+            catch (Exception) {
+
+            }
         }
 
         #endregion
 
         #endregion
+
     }
 }

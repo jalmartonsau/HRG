@@ -4,11 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HRG.Views"
+             xmlns:vm="clr-namespace:HRG.Models"
              xmlns:HRG="clr-namespace:HRG" x:Class="HRG.Views.Startup"
              mc:Ignorable="d"
+             d:DataContext="{x:Type vm:StartVM}"
              d:DesignHeight="500" d:DesignWidth="900">
 
     <DockPanel Background="#282828">
-        <ProgressBar Value="40" MaxHeight="30" Foreground="#31FE01" Background="#282828" BorderThickness="1" BorderBrush="#323232"  />
+        <TextBlock Text="{Binding Task}" />
+        <ProgressBar Value="{Binding Progress}" MaxHeight="30" Foreground="#31FE01" Background="#282828" BorderThickness="1" BorderBrush="#323232"  />
     </DockPanel>
 </UserControl>
