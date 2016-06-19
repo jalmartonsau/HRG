@@ -16,7 +16,7 @@
         <Button x:Name="MinButton" DockPanel.Dock="Right" Click="MinButton_Click" >
             <Image Source="../images/Minimize.png"  Margin="10,3,10,3"></Image>
         </Button>
-        <Image Source="../images/Logo.png"  />
+        <Image Source="../images/Logo.png"  Margin="3,2"/>
         <TextBlock HorizontalAlignment="Left" Foreground="White" Padding="8" Name="Title" FontFamily="Open Sans Light">HRG</TextBlock>
     </DockPanel>
 </UserControl>
