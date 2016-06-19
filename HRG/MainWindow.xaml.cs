@@ -31,6 +31,7 @@ namespace HRG
 
         private void UpdateApp()
         {
+            var Update = new Update();
             Update.DownloadLatest();
         }
 

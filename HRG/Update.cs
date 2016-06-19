@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Deployment.Application;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace HRG
 {
@@ -21,7 +23,8 @@ namespace HRG
 
         #region Properties
 
-        public int Progress { get { return 30; } set { } }
+        private long _Progress;
+        public long Progress { get { return _Progress; } set { _Progress = value; } }
 
         #endregion
 
@@ -30,7 +33,7 @@ namespace HRG
         /// <summary>
         /// Downloads latest app
         /// </summary>
-        public static void DownloadLatest()
+        public void DownloadLatest()
         {
             if (!ApplicationDeployment.IsNetworkDeployed)
                 return;
@@ -41,7 +44,8 @@ namespace HRG
 
                 if (deployment.CheckForUpdate())
                 {
-                    deployment.UpdateCompleted += new AsyncCompletedEventHandler( deployment_UpdateCompleted);
+                    deployment.UpdateProgressChanged += new DeploymentProgressChangedEventHandler(deployment_UpdateProgress);
+                    deployment.UpdateCompleted += new AsyncCompletedEventHandler(deployment_UpdateCompleted);
                     deployment.UpdateAsync();
                 }
             }
@@ -51,11 +55,29 @@ namespace HRG
             }
         }
 
+        #region UpdateCompleted
+
+        /// <summary>
+        /// Update Completed, Restart the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public static void deployment_UpdateCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            Debug.WriteLine("Update Done");
-            
+            System.Windows.Forms.Application.Restart(); 
+            System.Windows.Application.Current.Shutdown();
         }
+
+        #endregion
+
+        #region UpdateProgress
+
+        public void deployment_UpdateProgress(object sender, DeploymentProgressChangedEventArgs e)
+        {
+            Progress = (e.BytesCompleted/e.BytesTotal) * 100;
+        }
+
+        #endregion
 
         #endregion
     }
