@@ -13,5 +13,13 @@ namespace HRG
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// On Application Start
+        /// </summary>
+        public void Start(object sender, StartupEventArgs e)
+        {
+
+        }
     }
+    
 }

@@ -23,6 +23,17 @@ namespace HRG
         public MainWindow()
         {
             InitializeComponent();
+
+            UpdateApp();
+
+
         }
+
+        private void UpdateApp()
+        {
+            Update.DownloadLatest();
+        }
+
+
     }
 }

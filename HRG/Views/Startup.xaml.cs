@@ -23,6 +23,7 @@ namespace HRG.Views
         public Startup()
         {
             InitializeComponent();
+            
         }
     }
 }
